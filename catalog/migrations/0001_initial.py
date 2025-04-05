@@ -8,39 +8,127 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Введите наименование', max_length=150, verbose_name='наименование')),
-                ('description', models.TextField(blank=True, help_text='Введите описание', null=True, verbose_name='описание')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Введите наименование",
+                        max_length=150,
+                        verbose_name="наименование",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Введите описание",
+                        null=True,
+                        verbose_name="описание",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Категория',
-                'verbose_name_plural': 'Категории',
-                'ordering': ['name'],
+                "verbose_name": "Категория",
+                "verbose_name_plural": "Категории",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Введите наименование', max_length=150, verbose_name='наименование')),
-                ('description', models.TextField(blank=True, help_text='Введите описание', null=True, verbose_name='описание')),
-                ('image', models.ImageField(blank=True, help_text='Выберете изображение', null=True, upload_to='catalog/img', verbose_name='изображение')),
-                ('price', models.IntegerField(blank=True, help_text='Введите цену', null=True, verbose_name='цена за покупку')),
-                ('created_at', models.DateField(blank=True, help_text='Введите дату создания', null=True, verbose_name='дата создания')),
-                ('updated_at', models.DateField(blank=True, help_text='Введите дату последнего обновления', null=True, verbose_name='дата последнего изменения')),
-                ('category', models.ForeignKey(blank=True, help_text='Выберете категорию', null=True, on_delete=django.db.models.deletion.SET_NULL, to='catalog.category', verbose_name='категория')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Введите наименование",
+                        max_length=150,
+                        verbose_name="наименование",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Введите описание",
+                        null=True,
+                        verbose_name="описание",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Выберете изображение",
+                        null=True,
+                        upload_to="catalog/img",
+                        verbose_name="изображение",
+                    ),
+                ),
+                (
+                    "price",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="Введите цену",
+                        null=True,
+                        verbose_name="цена за покупку",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateField(
+                        blank=True,
+                        help_text="Введите дату создания",
+                        null=True,
+                        verbose_name="дата создания",
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateField(
+                        blank=True,
+                        help_text="Введите дату последнего обновления",
+                        null=True,
+                        verbose_name="дата последнего изменения",
+                    ),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Выберете категорию",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="catalog.category",
+                        verbose_name="категория",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
-                'ordering': ['name', 'price'],
+                "verbose_name": "Продукт",
+                "verbose_name_plural": "Продукты",
+                "ordering": ["name", "price"],
             },
         ),
     ]
