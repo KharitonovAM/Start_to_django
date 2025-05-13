@@ -1,21 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Product
-
-# Create your views here.
-
-
-def home(request):
-    return render(request, "home.html")
 
 
 def contact(request):
     return render(request, "contacts.html")
-
-
-def base_page(reguest):
-    return render(reguest, "base.html")
 
 
 def products(request, pk):
@@ -24,10 +14,16 @@ def products(request, pk):
     return render(request, "products.html", context=contex)
 
 
-# def list_products(request):
-#     products = Product.objects.all()
-#     context = {"products": products}
-#     return render(request, "home.html", context=context)
-
 class CatalogListView(ListView):
     model = Product
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.view_counter += 1
+        self.object.save()
+        return self.object
+
+
+class CatalogDetailView(DetailView):
+    model = Product
+

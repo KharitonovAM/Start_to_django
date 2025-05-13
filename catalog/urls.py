@@ -4,13 +4,14 @@ from django.conf.urls.static import static
 
 
 from .apps import CatalogConfig
-from .views import CatalogListView
+from .views import CatalogListView, CatalogDetailView
 
 app_name = CatalogConfig.name
 
 
 urlpatterns = [
     path("", CatalogListView.as_view(), name="index"),
+    path("catalog/<int:pk>", CatalogDetailView.as_view(), name="catalog_detail"),
 
 ]
 
