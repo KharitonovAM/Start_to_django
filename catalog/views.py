@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from .models import Product
 
@@ -23,7 +24,10 @@ def products(request, pk):
     return render(request, "products.html", context=contex)
 
 
-def list_products(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, "home.html", context=context)
+# def list_products(request):
+#     products = Product.objects.all()
+#     context = {"products": products}
+#     return render(request, "home.html", context=context)
+
+class CatalogListView(ListView):
+    model = Product

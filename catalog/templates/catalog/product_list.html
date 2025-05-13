@@ -1,4 +1,4 @@
-{% extends 'base.html.' %}
+{% extends 'catalog/base.html.' %}
 {%block content%}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Skystore</h1>
@@ -7,19 +7,21 @@
     <div class="container">
 
        <div class="row text-center">
-           {% for product in products %}
-            <div class="col-3">
+           {% for product in object_list %}
+            <div class="col-3 p-2">
 
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">{{ product.name}}</h4>
+                <div class="card mb-4 box-shadow h-100 ">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="my-0 font-weight-normal">{{ product.name.upper}}</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h1 class="card-title pricing-card-title">{{ product.price }}</h1>
                         <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                             {{product.description | truncatechars:100}}
                         </ul>
-                        <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:select_product' product.pk %}">Купить</a>
+                        <div class="mt-auto">
+                            <a type="button" class="btn btn-lg btn-block btn-outline-primary " href="#">Купить</a>
+                        </div>
                     </div>
                 </div>
             </div>
