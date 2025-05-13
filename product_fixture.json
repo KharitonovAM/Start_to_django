@@ -1,0 +1,80 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "пирожок",
+        "description": "вкусная штука",
+        "image": "",
+        "category": 1,
+        "price": 15,
+        "created_at": "2025-04-05",
+        "updated_at": "2025-04-05"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "батон нарезной",
+        "description": "отвратный батон зато уже нарезан",
+        "image": "",
+        "category": 1,
+        "price": 54,
+        "created_at": "2025-04-05",
+        "updated_at": "2025-04-05"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Йогурт питьевой",
+        "description": "Можно выпить утром на завтрак",
+        "image": "",
+        "category": 2,
+        "price": 180,
+        "created_at": "2025-04-05",
+        "updated_at": "2025-04-05"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Кефир",
+        "description": "Только на территории СССР употребляют",
+        "image": "",
+        "category": 2,
+        "price": 85,
+        "created_at": "2025-04-05",
+        "updated_at": "2025-04-05"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name": "Мастер и Маргарита",
+        "description": "Противоречий роман Булгакова",
+        "image": "",
+        "category": 4,
+        "price": 1500,
+        "created_at": null,
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name": "Джили Атлас",
+        "description": null,
+        "image": "",
+        "category": 3,
+        "price": 3150000,
+        "created_at": null,
+        "updated_at": null
+    }
+}
+]
