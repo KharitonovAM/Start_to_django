@@ -5,11 +5,6 @@ from django.views.generic import ListView, DetailView, CreateView, View
 from .models import Product
 
 
-class ContactListView(ListView):
-    model = Product
-    template_name = 'catalog/contact.html'
-
-
 class CatalogListView(ListView):
     model = Product
 
