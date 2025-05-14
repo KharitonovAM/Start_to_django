@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, View
 
 from .models import Product
 
 
-def contact(request):
-    return render(request, "contacts.html")
+class ContactListView(ListView):
+    model = Product
+    template_name = 'catalog/contact.html'
+
 
 class CatalogListView(ListView):
     model = Product
