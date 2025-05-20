@@ -3,11 +3,11 @@
 <div class="container">
     <div class="row">
         <div class="row">
-            <form class="row"method="post"enctype="multipart/form-data">
+            <form class="row" method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body>">
                         {% csrf_token %}
-                        {{ form.as_p}}
+                        {{ form.as_p }}
                     </div>
                     <button type="submit" class="btn btn-primary">
                         {% if object %}
