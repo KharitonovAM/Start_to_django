@@ -16,6 +16,7 @@ urlpatterns = [
     path('catalog/', CatalogCreateView.as_view(), name='create_product'),
     path("contact/", TemplateView.as_view(template_name='catalog/contact.html'), name="contact"),
     path('catalog/<int:pk>/update', CatalogUpdateView.as_view(), name='catalog_update'),
+
 ]
 
 if settings.DEBUG:
