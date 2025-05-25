@@ -17,5 +17,6 @@
             </div>
           </div>
         <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blog:update_blog' object.pk %}">Изменить данные</a>
+        <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blog:delete_blog' object.pk %}">Удалить статью</a>
         </div>
 {% endblock %}
