@@ -14,6 +14,7 @@ class CatalogDetailView(DetailView):
     model = Product
 
 
+
 class CatalogCreateView(CreateView):
     model = Product
     fields = ("name", "description", "image", "category","price")
