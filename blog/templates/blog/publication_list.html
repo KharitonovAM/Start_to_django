@@ -8,10 +8,11 @@
               <h3 class="mb-0">{{info.title}}</h3>
               <div class="mb-1 text-body-secondary">{{info.create_data}}</div>
               <p class="card-text mb-auto">{{info.content | truncatechars:150}}</p>
-              <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                Continue reading
-                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-              </a>
+
+               <div class="mt-auto">
+                 <a type="button" class="icon-link gap-1 icon-link-hover stretched-link" href="{% url 'blog:blog_detail' info.pk %}">Продолжить чтение</a>
+               </div>
+
             </div>
             <div class="col-auto d-none d-lg-block">
               <img src="{{ info.preview | media_filter }}" style="width: 100%; height: 400px;">
