@@ -11,7 +11,8 @@
                 </div>
               <p class="card-text mb-auto">{{object.content}}</p>
             </div>
-
           </div>
+        <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blog:update_blog' object.pk %}">Изменить данные</a>
+
         </div>
-{% endblock%}
+{% endblock %}

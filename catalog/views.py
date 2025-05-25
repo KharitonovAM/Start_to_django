@@ -9,6 +9,7 @@ from .models import Product
 class CatalogListView(ListView):
     model = Product
 
+
 class CatalogDetailView(DetailView):
     model = Product
 
@@ -23,4 +24,3 @@ class CatalogUpdateView(UpdateView):
     model = Product
     fields = ("name", "description", "image", "category", "price")
     success_url = reverse_lazy('catalog:index')
-
