@@ -7,6 +7,9 @@ from .models import Publication
 class BlogListView(ListView):
     model = Publication
 
+    def get_queryset(self):
+        return Publication.objects.filter(is_publicated=True)
+
 
 class BlogDetailView(DetailView):
     model = Publication
