@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Publication
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 class BlogListView(ListView):
@@ -13,9 +18,35 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = Publication
+
+    def send_simple_email(self, sender_email, receiver_email, subject, body, smtp_server, smtp_port, login, password):
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(body, 'plain'))
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(login, password)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+        server.quit()
+
+
+
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         self.object.number_shows += 1
+        if self.object.number_shows == 100:
+            self.send_simple_email(
+                sender_email="s.yamburg@ya.ru",
+                receiver_email="kharitonov_am@bk.ru",
+                subject="Уведомление о достижении 100 просмотров",
+                body=f"{self.object.title} достигла 100 просмотров, подзравляю!",
+                smtp_server="smtp.yandex.ru",
+                smtp_port=587,
+                login="s.yamburg@ya.ru",
+                password='CPA-5Bv-zQ5-PyH'
+            )
         self.object.save()
         return self.object
 
