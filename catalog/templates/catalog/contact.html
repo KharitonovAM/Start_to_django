@@ -1,4 +1,4 @@
-{% extends 'base.html.' %}
+{% extends 'catalog/base.html.' %}
 {%block content%}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Контакты</h1>
@@ -12,15 +12,15 @@
                     <table class="table table-striped">
                         <tr>
                             <td class="w-25">Страна</td>
-                            <td>USA</td>
+                            <td>Российская Федерация</td>
                         </tr>
                         <tr>
                             <td class="w-25">ИНН</td>
-                            <td>91-1144442</td>
+                            <td>+7 999 777-77-77</td>
                         </tr>
                         <tr>
                             <td class="w-25">Адрес</td>
-                            <td>Redmond,WA,98052-6399</td>
+                            <td>Санкт-Петербург, Невский проспект д.70</td>
                         </tr>
                     </table>
                 </div>
@@ -45,9 +45,23 @@
                             <label for="message">Сообщение</label>
                             <textarea type="text" name="message" class="form-control" id="message" placeholder="Контактный телефон" required></textarea>
                         </div>
-                            <a href="#" class="btn btn-lg btn-block btn-outline-primary"
+                        <a href="#" class="btn btn-lg btn-block btn-outline-primary" id="liveToastBtn"
                                data-toggle="modal"
                                tabindex="-1" role="button" aria-disabled="true">Отправить</a>
+                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="toast-header" id="liveToastBtn">
+                            <img src="..." class="rounded me-2" alt="...">
+                            <strong class="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                          <div class="toast-body">
+                            Hello, world! This is a toast message.
+                          </div>
+                        </div>
+
+
+
                     </form>
                 </div>
             </div>

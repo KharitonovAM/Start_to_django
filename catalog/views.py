@@ -1,29 +1,27 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from .models import Product
 
-# Create your views here.
+
+class CatalogListView(ListView):
+    model = Product
 
 
-def home(request):
-    return render(request, "home.html")
+class CatalogDetailView(DetailView):
+    model = Product
 
 
-def contact(request):
-    return render(request, "contacts.html")
+
+class CatalogCreateView(CreateView):
+    model = Product
+    fields = ("name", "description", "image", "category","price")
+    success_url = reverse_lazy('catalog:index')
 
 
-def base_page(reguest):
-    return render(reguest, "base.html")
-
-
-def products(request, pk):
-    product = Product.objects.get(pk=pk)
-    contex = {"product": product}
-    return render(request, "products.html", context=contex)
-
-
-def list_products(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, "home.html", context=context)
+class CatalogUpdateView(UpdateView):
+    model = Product
+    fields = ("name", "description", "image", "category", "price")
+    success_url = reverse_lazy('catalog:index')
