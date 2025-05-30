@@ -5,6 +5,7 @@ from .models import Product, Category
 
 spam_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
+
 class ProductForm(ModelForm):
     class Meta:
         model = Product
@@ -14,9 +15,12 @@ class ProductForm(ModelForm):
     def clean(self):
         name = self.cleaned_data['name']
         description = self.cleaned_data['description']
-        if set(name.lower().split())&set(spam_words) or set(description.lower().split())&set(spam_words):
-            message = f'Спам-слова запрещено использовать, необходимо убрать:\n {' '.join(set(name.lower().split())&set(spam_words))} {' '.join(set(description.lower().split())&set(spam_words))}!!!'
+        if set(name.lower().split()) & set(spam_words) or set(description.lower().split()) & set(spam_words):
+            message = f'Спам-слова запрещено использовать, необходимо убрать:\n {' '.join(set(name.lower().split()) & set(spam_words))} {' '.join(set(description.lower().split()) & set(spam_words))}!!!'
             raise ValidationError(message)
 
-
-
+    def clean_price(self):
+        price = self.cleaned_data['price']
+        if int(price) < 0:
+            raise ValidationError("Недопустима отрицательная цена!")
+        return price
