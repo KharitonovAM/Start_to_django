@@ -15,7 +15,8 @@ class ProductForm(ModelForm):
         name = self.cleaned_data['name']
         description = self.cleaned_data['description']
         if set(name.lower().split())&set(spam_words) or set(description.lower().split())&set(spam_words):
-            raise ValidationError('Спам-слова запрещено использовать')
+            message = f'Спам-слова запрещено использовать, необходимо убрать:\n {' '.join(set(name.lower().split())&set(spam_words))} {' '.join(set(description.lower().split())&set(spam_words))}!!!'
+            raise ValidationError(message)
 
 
 
