@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, BooleanField
 from django.core.exceptions import ValidationError
 
 from .models import Product, Category
@@ -6,11 +6,16 @@ from .models import Product, Category
 spam_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
 
-class ProductForm(ModelForm):
+class StyleFormMixim:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for fild_name, fild in self.fields.items():
+            fild.widget.attrs['class'] = "form-control"
+
+class ProductForm(StyleFormMixim, ModelForm):
     class Meta:
         model = Product
-        #exclude = ('name',)
-        fields = '__all__'
+        exclude = ('created_at','updated_at')
 
     def clean(self):
         name = self.cleaned_data['name']
