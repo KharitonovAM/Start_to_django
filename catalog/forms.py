@@ -29,3 +29,10 @@ class ProductForm(StyleFormMixim, ModelForm):
         if int(price) < 0:
             raise ValidationError("Недопустима отрицательная цена!")
         return price
+
+    def clean_file(self):
+        image = super().cleaned_data['image']
+        # Валидация размера файла
+        if image.size > 1024 * 1024 * 5:  # 5 МБ
+            raise ValidationError("Файл слишком большой. Максимальный размер — 5 МБ.")
+        return image
