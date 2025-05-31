@@ -40,16 +40,23 @@ class BlogDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.number_shows += 1
         if self.object.number_shows == 100:
-            self.send_simple_email(
-                sender_email=os.getenv('SENDER_EMAIL'),
-                receiver_email=os.getenv('RECEIVER_EMAIL'),
-                subject="Уведомление о достижении 100 просмотров",
-                body=f"{self.object.title} достигла 100 просмотров, подзравляю!",
-                smtp_server=os.getenv('SMTP_SERVER'),
-                smtp_port=os.getenv('SMPT_PORT'),
-                login=os.getenv('LOGIN_SENDER'),
-                password=os.getenv('PASSWORD_SENDER')
-            )
+            pass
+            sender_email = os.getenv('SENDER_EMAIL')
+            receiver_email = os.getenv('RECEIVER_EMAIL')
+            smtp_server = os.getenv('SMTP_SERVER')
+            smtp_port = os.getenv('SMPT_PORT')
+            login = os.getenv('LOGIN_SENDER')
+            password = os.getenv('PASSWORD_SENDER')
+
+            self.send_simple_email(sender_email,
+                                   receiver_email,
+                                   "Уведомление о достижении 100 просмотров",
+                                   f"{self.object.title} достигла 100 просмотров, подзравляю!",
+                                   smtp_server,
+                                   smtp_port,
+                                   login,
+                                   password)
+
         self.object.save()
         return self.object
 
