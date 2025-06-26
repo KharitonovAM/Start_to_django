@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -17,6 +18,7 @@ class Product(models.Model):
         upload_to="catalog/img",
         blank=True,
         null=True,
+        validators=[FileExtensionValidator(['jpeg', 'PNG']), ]
     )
     category = models.ForeignKey(
         "Category",
