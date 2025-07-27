@@ -40,7 +40,6 @@ class BlogDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.number_shows += 1
         if self.object.number_shows == 100:
-            pass
             sender_email = os.getenv('SENDER_EMAIL')
             receiver_email = os.getenv('RECEIVER_EMAIL')
             smtp_server = os.getenv('SMTP_SERVER')
