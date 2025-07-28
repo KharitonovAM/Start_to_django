@@ -5,14 +5,21 @@ from django.contrib.auth import login
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
 from users.forms import UserRegisterForm
 from users.models import User
 
-from config.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USER_TLS, EMAIL_USER_SSL, EMAIL_PORT, EMAIL_HOST
-
+from config.settings import EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, EMAIL_USE_SSL
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = "piton-kharitonov@yandex.ru"
+# EMAIL_HOST_PASSWORD = "cbwtebotklvhuzbl"
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = True
 class UserCreateView(CreateView):
 
 
@@ -21,36 +28,19 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('users:login')
 
 
+    def form_valid(self, form):
+        object = form.save()
+        receiver_email = object.email
+        host = EMAIL_HOST
+        send_mail('Тема', 'Тело письма', EMAIL_HOST_USER, ['kharitonov_am@bk.ru'])
+        send_mail(
+            subject="Уведомление о регистрации",
+            message='Поздравляю. вы зарегистрировались у нас на сайте и теперь имеете доступ к его полному функционалу',
+            from_email="piton-kharitonov@yandex.ru",
+            recipient_list=[receiver_email]
+        )
+        return super().form_valid(form)
 
-    def send_simple_email(self, sender_email, receiver_email, subject, body, smtp_server, smtp_port, login, password):
-        msg = MIMEMultipart()
-        msg['From'] = sender_email
-        msg['To'] = receiver_email
-        msg['Subject'] = subject
-        msg.attach(MIMEText(body, 'plain'))
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(login, password)
-        server.sendmail(sender_email, receiver_email, msg.as_string())
-        server.quit()
 
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        sender_email = EMAIL_HOST_USER
-        receiver_email = self.object.email
-        smtp_server = EMAIL_HOST
-        smtp_port = EMAIL_PORT
-        login = EMAIL_HOST_USER
-        password = EMAIL_HOST_PASSWORD
-        print('sdgsdfg')
-        self.send_simple_email(sender_email,
-                                receiver_email,
-                                "Уведомление о регистрации",
-                                   'Поздравляю. вы зарегистрировались у нас на сайте и теперь имеете доступ к его полному функционалу',
-                                   smtp_server,
-                                   smtp_port,
-                                   login,
-                                   password)
 
-        self.object.save()
-        return self.object
+
