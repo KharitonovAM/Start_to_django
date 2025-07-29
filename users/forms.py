@@ -2,7 +2,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 
 from catalog.forms import StyleFormMixim
-
 from users.models import User
 
 

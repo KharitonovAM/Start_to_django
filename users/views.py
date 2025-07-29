@@ -6,6 +6,7 @@ from django.views.generic import CreateView, UpdateView
 from config.settings import EMAIL_HOST, EMAIL_HOST_USER
 from users.forms import UserRegisterForm
 from users.models import User
+
 from .forms import UserForm
 
 

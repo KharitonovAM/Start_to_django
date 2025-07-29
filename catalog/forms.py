@@ -1,7 +1,7 @@
-from django.forms import ModelForm, BooleanField
 from django.core.exceptions import ValidationError
+from django.forms import BooleanField, ModelForm
 
-from .models import Product, Category
+from .models import Category, Product
 
 spam_words = [
     "казино",
