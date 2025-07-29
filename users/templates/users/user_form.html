@@ -8,8 +8,13 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                 </div>
+
                 <button type="submit" class="btn btn-primary">
+                    {% if user.is_authenticated %}
+                    Сохранить изменения
+                    {% else %}
                     Зарегестрироваться
+                    {% endif %}
                 </button>
             </div>
         </form>

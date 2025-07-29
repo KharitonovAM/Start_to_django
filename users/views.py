@@ -6,20 +6,16 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from users.forms import UserRegisterForm
 from users.models import User
 
 from config.settings import EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, EMAIL_USE_SSL
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = "piton-kharitonov@yandex.ru"
-# EMAIL_HOST_PASSWORD = "cbwtebotklvhuzbl"
-# EMAIL_USE_TLS = False
-# EMAIL_USE_SSL = True
+from .forms import UserForm
 class UserCreateView(CreateView):
 
 
@@ -40,6 +36,13 @@ class UserCreateView(CreateView):
             recipient_list=[receiver_email]
         )
         return super().form_valid(form)
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy('catalog:index')
+    login_url = reverse_lazy('users:register')
+
 
 
 
