@@ -31,19 +31,15 @@ class UserCreateView(CreateView):
         send_mail('Тема', 'Тело письма', EMAIL_HOST_USER, ['kharitonov_am@bk.ru'])
         send_mail(
             subject="Уведомление о регистрации",
-            message='Поздравляю. вы зарегистрировались у нас на сайте и теперь имеете доступ к его полному функционалу',
+            message='Поздравляю, вы зарегистрировались у нас на сайте и теперь имеете доступ к его функционалу',
             from_email="piton-kharitonov@yandex.ru",
             recipient_list=[receiver_email]
         )
         return super().form_valid(form)
+
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     success_url = reverse_lazy('catalog:index')
     login_url = reverse_lazy('users:register')
-
-
-
-
-
